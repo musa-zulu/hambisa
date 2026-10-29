@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Merchant bulk booking</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0B5D45}a:hover{color:#083F2F}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #F4F5F2; color: #111714; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 14px; display: flex; flex-direction: column">
+  <header style="background: #fff; border-bottom: 1px solid #E1E4DF">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 24px; min-height: 64px; display: flex; flex-wrap: wrap; align-items: center; gap: 24px">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <svg width="30" height="30" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#0B5D45"/><path d="M17 13l10 9-10 9" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 17h5M6 22h7M8 27h5" stroke="#F4B400" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <span style="font-size: 16px; font-weight: 800">Hambisa <span style="font-weight: 600; color: #3F4943">for Business</span></span>
+      </div>
+      <nav aria-label="Merchant" style="display: flex; flex-wrap: wrap; gap: 4px; flex: 1">
+        <a href="#" style="height: 36px; padding: 0 12px; border-radius: 8px; display: flex; align-items: center; text-decoration: none; color: #3F4943; font-weight: 600">Overview</a>
+        <a href="#" aria-current="page" style="height: 36px; padding: 0 12px; border-radius: 8px; display: flex; align-items: center; text-decoration: none; background: #E3F1EB; color: #0B5D45; font-weight: 700">Book deliveries</a>
+        <a href="#" style="height: 36px; padding: 0 12px; border-radius: 8px; display: flex; align-items: center; text-decoration: none; color: #3F4943; font-weight: 600">Orders</a>
+        <a href="#" style="height: 36px; padding: 0 12px; border-radius: 8px; display: flex; align-items: center; text-decoration: none; color: #3F4943; font-weight: 600">Invoices</a>
+        <a href="#" style="height: 36px; padding: 0 12px; border-radius: 8px; display: flex; align-items: center; text-decoration: none; color: #3F4943; font-weight: 600">Branches &amp; users</a>
+        <a href="#" style="height: 36px; padding: 0 12px; border-radius: 8px; display: flex; align-items: center; text-decoration: none; color: #3F4943; font-weight: 600">API &amp; webhooks</a>
+      </nav>
+      <span style="display: flex; flex-direction: column; text-align: right"><span style="font-weight: 700">Kloof Bakery</span><span style="font-size: 12px; color: #5B655F">Ayesha R. · Admin</span></span>
+    </div>
+  </header>
+
+  <main style="max-width: 1280px; width: 100%; margin: 0 auto; padding: 28px 24px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <h1 style="margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -0.02em">Bulk booking</h1>
+        <span style="color: #3F4943">Upload a CSV of drop-offs. We check every row before anything is booked.</span>
+      </div>
+      <ol aria-label="Progress" style="list-style: none; margin: 0; padding: 0; display: flex; gap: 8px; flex-wrap: wrap">
+        <li style="height: 34px; padding: 0 12px; border-radius: 999px; background: #E3F1EB; color: #0B5D45; font-weight: 700; display: flex; align-items: center; gap: 6px"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5l3 3 6-6" fill="none" stroke="#0B5D45" stroke-width="2" stroke-linecap="round"/></svg>1 Upload</li>
+        <li aria-current="step" style="height: 34px; padding: 0 12px; border-radius: 999px; background: #111714; color: #fff; font-weight: 700; display: flex; align-items: center">2 Check rows</li>
+        <li style="height: 34px; padding: 0 12px; border-radius: 999px; border: 1px solid #C9CEC8; color: #3F4943; font-weight: 600; display: flex; align-items: center">3 Price &amp; book</li>
+      </ol>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+      <section style="flex: 3 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px; padding: 14px 16px; background: #fff; border: 1px solid #E1E4DF; border-radius: 12px">
+          <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><path d="M7 3h10l5 5v17H7z" fill="#F4F5F2" stroke="#3F4943" stroke-width="1.6" stroke-linejoin="round"/><path d="M17 3v5h5" fill="none" stroke="#3F4943" stroke-width="1.6"/></svg>
+          <span style="display: flex; flex-direction: column; flex: 1"><span style="font-weight: 700">friday-orders.csv</span><span style="font-size: 12px; color: #5B655F">50 rows · uploaded 09:12</span></span>
+          <span style="font-weight: 700; color: #0B5D45">48 ready</span>
+          <span style="font-weight: 700; color: #A1281B">2 need fixes</span>
+          <a href="#" style="font-weight: 700">Replace file</a>
+        </div>
+        <div style="background: #fff; border: 1px solid #E1E4DF; border-radius: 12px; overflow: hidden">
+          <div style="overflow-x: auto">
+            <table style="width: 100%; border-collapse: collapse; min-width: 680px">
+              <thead><tr style="text-align: left; color: #3F4943; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; background: #FAFBF9">
+                <th style="padding: 10px 14px; font-weight: 700">Row</th><th style="padding: 10px 14px; font-weight: 700">Recipient</th><th style="padding: 10px 14px; font-weight: 700">Drop-off</th><th style="padding: 10px 14px; font-weight: 700">Parcel</th><th style="padding: 10px 14px; font-weight: 700">Check</th>
+              </tr></thead>
+              <tbody>
+                <sc-for list="{{rows}}" as="r" hint-placeholder-count="7">
+                  <tr style="border-top: 1px solid #ECEDEB; background: {{r.bg}}">
+                    <td style="padding: 11px 14px; font-family: 'JetBrains Mono', monospace; font-size: 13px">{{r.n}}</td>
+                    <td style="padding: 11px 14px; font-weight: 600">{{r.name}}</td>
+                    <td style="padding: 11px 14px">{{r.addr}}</td>
+                    <td style="padding: 11px 14px">{{r.parcel}}</td>
+                    <td style="padding: 11px 14px; font-weight: 700; color: {{r.color}}">{{r.check}}</td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </div>
+          <div style="padding: 10px 14px; border-top: 1px solid #E1E4DF; display: flex; justify-content: space-between; color: #3F4943"><span>Showing problems first · 7 of 50</span><a href="#" style="font-weight: 700">Show all rows</a></div>
+        </div>
+      </section>
+
+      <aside aria-labelledby="sum" style="flex: 1 1 320px; min-width: 0; background: #fff; border: 1px solid #E1E4DF; border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 14px">
+        <h2 id="sum" style="margin: 0; font-size: 17px; font-weight: 800">Summary</h2>
+        <label style="display: flex; flex-direction: column; gap: 4px; font-weight: 600">Pickup branch<select style="height: 40px; border: 1px solid #C9CEC8; border-radius: 8px; padding: 0 10px; font: 500 14px 'Plus Jakarta Sans', system-ui, sans-serif; background: #fff"><option>Kloof Street kitchen</option></select></label>
+        <label style="display: flex; flex-direction: column; gap: 4px; font-weight: 600">Collection window<select style="height: 40px; border: 1px solid #C9CEC8; border-radius: 8px; padding: 0 10px; font: 500 14px 'Plus Jakarta Sans', system-ui, sans-serif; background: #fff"><option>Fri 24 Oct, 10:00–11:00</option></select></label>
+        <div style="display: flex; flex-direction: column; gap: 8px; padding-top: 6px; border-top: 1px solid #ECEDEB">
+          <div style="display: flex; justify-content: space-between"><span style="color: #3F4943">48 deliveries · contract rate</span><span style="font-weight: 600">R 2,448.00</span></div>
+          <div style="display: flex; justify-content: space-between"><span style="color: #3F4943">Volume discount 10%</span><span style="font-weight: 600; color: #0B5D45">− R 244.80</span></div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-weight: 800">Total, invoiced monthly</span><span style="font-size: 22px; font-weight: 800">R 2,203.20</span></div>
+        </div>
+        <span style="font-size: 13px; color: #3F4943; line-height: 1.5">Rows with problems are left out. Fix them and they'll be priced as a separate booking.</span>
+        <button style="height: 48px; border-radius: 10px; border: 0; background: #0B5D45; color: #fff; font: 700 15px 'Plus Jakarta Sans', system-ui, sans-serif">Book 48 deliveries</button>
+      </aside>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+renderVals() {
+const rows = [
+  ['14','Pieter V.','12 Hof St, Oranjezicht','Box · 2 kg','Address outside service area', false],
+  ['31','Naledi M.','8 Upper Orange St, Oranjezicht','Box · 18 kg','Too heavy — limit is 15 kg', false],
+  ['1','Café Mira','101 Bree St, CBD','Box · 4 kg','Ready', true],
+  ['2','Ruth P.','3 Kloofnek Rd, Tamboerskloof','Box · 1.5 kg','Ready', true],
+  ['3','Hotel Nest','27 Somerset Rd, Green Point','Box · 6 kg','Ready', true],
+  ['4','James O.','55 Main Rd, Sea Point','Box · 2 kg','Ready', true],
+  ['5','Lwazi T.','9 Albert Rd, Woodstock','Box · 3 kg','Ready', true]
+].map(([n, name, addr, parcel, check, ok]) => ({ n, name, addr, parcel, check, color: ok ? '#0B5D45' : '#A1281B', bg: ok ? '#FFFFFF' : '#FFF6F4' }));
+return { rows };
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Reports and exports</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0B5D45}a:hover{color:#083F2F}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #F4F5F2; color: #111714; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 14px">
+  <nav aria-label="Back office" style="flex: 1 1 220px; background: #111714; color: #fff; padding: 20px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 8px">
+      <svg width="30" height="30" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#0B5D45"/><path d="M17 13l10 9-10 9" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 17h5M6 22h7M8 27h5" stroke="#F4B400" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <span style="display: flex; flex-direction: column"><span style="font-size: 16px; font-weight: 800">Hambisa</span><span style="font-size: 12px; color: #B9C1BC">Back office</span></span>
+    </div>
+    <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px">
+      <sc-for list="{{nav}}" as="n" hint-placeholder-count="10">
+        <li><a href="{{n.href}}" aria-current="{{n.current}}" style="display: flex; justify-content: space-between; align-items: center; height: 40px; padding: 0 10px; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 600; background: {{n.bg}}; color: {{n.fg}}"><span>{{n.label}}</span><span style="font: 600 12px 'JetBrains Mono', monospace; color: #F4B400">{{n.badge}}</span></a></li>
+      </sc-for>
+    </ul>
+    <div style="margin-top: auto; padding: 10px; border-radius: 10px; background: #1D2622; display: flex; flex-direction: column; gap: 2px">
+      <span style="font-size: 13px; font-weight: 700">Lindiwe S.</span>
+      <span style="font-size: 12px; color: #B9C1BC">Operations admin · MFA on</span>
+    </div>
+  </nav>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 24px 32px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <h1 style="margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -0.02em">Reports</h1>
+        <span style="color: #3F4943">9–22 Oct 2026 · all service areas · SAST (UTC+2)</span>
+      </div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap">
+        <label style="display: flex; flex-direction: column; gap: 2px; font-size: 12px; font-weight: 600; color: #3F4943">Period<select style="height: 38px; border: 1px solid #C9CEC8; border-radius: 8px; padding: 0 10px; font: 600 14px 'Plus Jakarta Sans', system-ui, sans-serif; background: #fff"><option>Last 14 days</option></select></label>
+        <label style="display: flex; flex-direction: column; gap: 2px; font-size: 12px; font-weight: 600; color: #3F4943">Service area<select style="height: 38px; border: 1px solid #C9CEC8; border-radius: 8px; padding: 0 10px; font: 600 14px 'Plus Jakarta Sans', system-ui, sans-serif; background: #fff"><option>All</option></select></label>
+        <label style="display: flex; flex-direction: column; gap: 2px; font-size: 12px; font-weight: 600; color: #3F4943">Delivery type<select style="height: 38px; border: 1px solid #C9CEC8; border-radius: 8px; padding: 0 10px; font: 600 14px 'Plus Jakarta Sans', system-ui, sans-serif; background: #fff"><option>All</option></select></label>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
+      <section aria-labelledby="dh" style="flex: 2 1 520px; min-width: 0; background: #fff; border: 1px solid #E1E4DF; border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px">
+          <h2 id="dh" style="margin: 0; font-size: 16px; font-weight: 800">Delivered orders per day</h2>
+          <a href="#" style="font-size: 13px; font-weight: 700">How this is counted</a>
+        </div>
+        <div style="display: flex; gap: 8px">
+          <div style="display: flex; flex-direction: column; justify-content: space-between; height: 220px; font-size: 12px; color: #5B655F; text-align: right; padding-bottom: 22px; box-sizing: border-box"><span>500</span><span>250</span><span>0</span></div>
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column">
+            <div role="img" aria-label="Delivered orders per day, 9 to 22 October; peak 468 on 17 October" style="height: 198px; display: grid; grid-template-columns: repeat(14, minmax(0, 1fr)); gap: 2px; align-items: end; border-bottom: 1px solid #C9CEC8; background: linear-gradient(#ECEDEB 1px, transparent 1px) 0 0 / 100% 99px">
+              <sc-for list="{{bars}}" as="b" hint-placeholder-count="14">
+                <div title="{{b.tip}}" style="height: {{b.h}}; background: #0B5D45; border-radius: 4px 4px 0 0; margin: 0 3px"></div>
+              </sc-for>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(14, minmax(0, 1fr)); gap: 2px; padding-top: 6px; font-size: 11px; color: #5B655F; text-align: center">
+              <sc-for list="{{bars}}" as="b" hint-placeholder-count="14"><span>{{b.label}}</span></sc-for>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="eh" style="flex: 1 1 300px; min-width: 0; background: #fff; border: 1px solid #E1E4DF; border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+        <h2 id="eh" style="margin: 0; font-size: 16px; font-weight: 800">Export CSV</h2>
+        <label style="display: flex; flex-direction: column; gap: 4px; font-weight: 600">Dataset<select style="height: 38px; border: 1px solid #C9CEC8; border-radius: 8px; padding: 0 10px; font: 500 14px 'Plus Jakarta Sans', system-ui, sans-serif; background: #fff"><option>Deliveries by zone</option></select></label>
+        <fieldset style="margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 6px">
+          <legend style="font-weight: 600; padding-bottom: 6px">Include</legend>
+          <label style="display: flex; gap: 8px; align-items: center"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #0B5D45">Order and status fields</label>
+          <label style="display: flex; gap: 8px; align-items: center"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #0B5D45">Customer phone numbers</label>
+          <label style="display: flex; gap: 8px; align-items: center; color: #5B655F"><input type="checkbox" disabled style="width: 18px; height: 18px">Proof photos · not permitted for your role</label>
+        </fieldset>
+        <div style="padding: 10px 12px; border-radius: 8px; background: #F4F5F2; color: #3F4943; font-size: 13px; line-height: 1.5">This export of 5,089 rows will be logged with your name, time and filters.</div>
+        <button style="height: 40px; border-radius: 8px; border: 0; background: #0B5D45; color: #fff; font: 700 14px 'Plus Jakarta Sans', system-ui, sans-serif; margin-top: auto">Export 5,089 rows</button>
+      </section>
+    </div>
+
+    <section style="background: #fff; border: 1px solid #E1E4DF; border-radius: 12px; overflow: hidden">
+      <div style="padding: 12px 16px; border-bottom: 1px solid #E1E4DF"><h2 style="margin: 0; font-size: 16px; font-weight: 800">By service zone</h2></div>
+      <div style="overflow-x: auto">
+        <table style="width: 100%; border-collapse: collapse; min-width: 820px">
+          <thead><tr style="text-align: right; color: #3F4943; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; background: #FAFBF9">
+            <th style="padding: 10px 14px; font-weight: 700; text-align: left">Zone</th><th style="padding: 10px 14px; font-weight: 700">Delivered</th><th style="padding: 10px 14px; font-weight: 700">Completion</th><th style="padding: 10px 14px; font-weight: 700">Cancelled</th><th style="padding: 10px 14px; font-weight: 700">Assign median / p90</th><th style="padding: 10px 14px; font-weight: 700">On time</th><th style="padding: 10px 14px; font-weight: 700">Rider utilisation</th>
+          </tr></thead>
+          <tbody>
+            <sc-for list="{{zones}}" as="z" hint-placeholder-count="5">
+              <tr style="border-top: 1px solid #ECEDEB; text-align: right">
+                <td style="padding: 11px 14px; text-align: left; font-weight: 700">{{z.name}}</td>
+                <td style="padding: 11px 14px">{{z.delivered}}</td>
+                <td style="padding: 11px 14px">{{z.completion}}</td>
+                <td style="padding: 11px 14px">{{z.cancelled}}</td>
+                <td style="padding: 11px 14px; font-family: 'JetBrains Mono', monospace; font-size: 13px">{{z.assign}}</td>
+                <td style="padding: 11px 14px; font-weight: 700; color: {{z.onTimeColor}}">{{z.onTime}}</td>
+                <td style="padding: 11px 14px">{{z.util}}</td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+renderVals() {
+const items = [['Dashboard','Bo01-Dashboard.dc.html',''],['Orders','Bo02-Orders.dc.html',''],['Dispatch','Bo03-Dispatch.dc.html','7'],['Riders','Bo04-Riders.dc.html','4'],['Customers','#',''],['Merchants','Mer01-BulkBooking.dc.html',''],['Payments','Bo05-Payments.dc.html',''],['Support','Bo07-Support.dc.html','12'],['Reports','Bo08-Reports.dc.html',''],['Settings','Bo06-Pricing.dc.html','']];
+const active = 'Reports';
+const nav = items.map(([label, href, badge]) => ({ label, href, badge, current: label === active ? 'page' : 'false', bg: label === active ? '#0B5D45' : 'transparent', fg: label === active ? '#FFFFFF' : '#C9CEC8' }));
+const vals = [352,371,298,214,388,402,415,421,468,330,236,409,397,388];
+const bars = vals.map((v, i) => ({ h: Math.round(v / 500 * 198) + 'px', label: String(9 + i), tip: (9 + i) + ' Oct: ' + v + ' delivered' }));
+const zones = [
+  { name:'CBD', delivered:'1,402', completion:'97.1%', cancelled:'1.8%', assign:'1:12 / 3:40', onTime:'93%', onTimeColor:'#111714', util:'71%' },
+  { name:'Atlantic Seaboard', delivered:'1,118', completion:'96.4%', cancelled:'2.2%', assign:'1:35 / 4:10', onTime:'91%', onTimeColor:'#111714', util:'66%' },
+  { name:'Southern Suburbs', delivered:'1,264', completion:'95.8%', cancelled:'2.5%', assign:'1:48 / 5:05', onTime:'89%', onTimeColor:'#111714', util:'63%' },
+  { name:'Northern Suburbs', delivered:'902', completion:'93.9%', cancelled:'3.4%', assign:'2:41 / 7:20', onTime:'84%', onTimeColor:'#A1281B', util:'58%' },
+  { name:'Woodstock & Obs', delivered:'403', completion:'96.9%', cancelled:'1.9%', assign:'1:20 / 3:55', onTime:'92%', onTimeColor:'#111714', util:'69%' }
+];
+return { nav, bars, zones };
+}
+}
+</script>
+</body>
+</html>

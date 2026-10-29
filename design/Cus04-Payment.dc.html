@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Payment</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0B5D45}a:hover{color:#083F2F}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F4F5F2; color: #111714; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="padding: 54px 16px 12px; background: #fff; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #E1E4DF">
+    <a href="Cus03-Review.dc.html" aria-label="Back" style="width: 44px; height: 44px; border-radius: 12px; border: 1px solid #E1E4DF; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4L6.5 10l6 6" fill="none" stroke="#111714" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <div style="display: flex; flex-direction: column; flex: 1">
+      <h1 style="margin: 0; font-size: 19px; font-weight: 800">Pay and book</h1>
+      <span style="font-size: 13px; color: #5B655F">Step 3 of 3</span>
+    </div>
+  </header>
+
+  <div style="flex: 1; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+    <section style="background: #fff; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+      <h2 style="margin: 0; font-size: 15px; font-weight: 800">Price</h2>
+      <div style="display: flex; justify-content: space-between; font-size: 15px; color: #3F4943"><span>Delivery fee</span><span>R 68.00</span></div>
+      <div style="display: flex; justify-content: space-between; font-size: 15px; color: #0B5D45; font-weight: 600"><span>Promo FIRSTRIDE</span><span>− R 10.00</span></div>
+      <div style="display: flex; justify-content: space-between; font-size: 13px; color: #5B655F"><span>VAT included where applicable</span><span>[VAT]</span></div>
+      <div style="height: 1px; background: #E1E4DF"></div>
+      <div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-size: 17px; font-weight: 800">Total to pay</span><span style="font-size: 24px; font-weight: 800; letter-spacing: -0.01em">R 58.00</span></div>
+    </section>
+
+    <fieldset style="margin: 0; border: 0; padding: 0; display: flex; flex-direction: column; gap: 8px">
+      <legend style="font-size: 15px; font-weight: 800; padding: 0 0 8px">Payment method</legend>
+      <label style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 14px; background: #fff; border: 2px solid #0B5D45; min-height: 64px; box-sizing: border-box">
+        <input type="radio" name="pm" checked style="width: 22px; height: 22px; margin: 0; accent-color: #0B5D45">
+        <span style="width: 40px; height: 28px; border-radius: 6px; background: #111714; display: flex; align-items: center; justify-content: center"><span style="width: 14px; height: 10px; border-radius: 2px; background: #F4B400"></span></span>
+        <span style="display: flex; flex-direction: column; flex: 1"><span style="font-size: 15px; font-weight: 700">Card ending 4821</span><span style="font-size: 13px; color: #5B655F">Expires 08/28</span></span>
+      </label>
+      <label style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 14px; background: #fff; border: 1px solid #E1E4DF; min-height: 64px; box-sizing: border-box">
+        <input type="radio" name="pm" style="width: 22px; height: 22px; margin: 0; accent-color: #0B5D45">
+        <span style="width: 40px; height: 28px; border-radius: 6px; background: #E3F1EB; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: #0B5D45">EFT</span>
+        <span style="display: flex; flex-direction: column; flex: 1"><span style="font-size: 15px; font-weight: 700">Instant EFT</span><span style="font-size: 13px; color: #5B655F">Pay from your banking app</span></span>
+      </label>
+      <label style="display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 14px; background: #F4F5F2; border: 1px dashed #C9CEC8; min-height: 64px; box-sizing: border-box">
+        <input type="radio" name="pm" disabled style="width: 22px; height: 22px; margin: 0">
+        <span style="width: 40px; height: 28px; border-radius: 6px; background: #ECEDEB; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: #5B655F">CASH</span>
+        <span style="display: flex; flex-direction: column; flex: 1"><span style="font-size: 15px; font-weight: 700; color: #3F4943">Cash on delivery</span><span style="font-size: 13px; color: #5B655F">Not available yet</span></span>
+      </label>
+      <a href="#" style="display: flex; align-items: center; gap: 8px; min-height: 44px; font-size: 15px; font-weight: 700"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 3v12M3 9h12" stroke="#0B5D45" stroke-width="2" stroke-linecap="round"/></svg>Add a card</a>
+    </fieldset>
+
+    <div style="flex: 1"></div>
+    <div style="display: flex; gap: 10px; align-items: flex-start">
+      <svg width="18" height="18" viewBox="0 0 18 18" style="flex-shrink: 0; margin-top: 2px" aria-hidden="true"><rect x="3.5" y="8" width="11" height="8" rx="2" fill="none" stroke="#3F4943" stroke-width="1.6"/><path d="M6 8V6a3 3 0 016 0v2" fill="none" stroke="#3F4943" stroke-width="1.6"/></svg>
+      <span style="font-size: 13px; line-height: 1.5; color: #3F4943">Card details are handled by our payment provider; Hambisa never sees your full card number. Free cancellation until a rider is assigned. <a href="#">Cancellation policy</a></span>
+    </div>
+  </div>
+
+  <footer style="background: #fff; border-top: 1px solid #E1E4DF; padding: 14px 16px 34px">
+    <button style="width: 100%; height: 56px; border: 0; border-radius: 14px; background: #0B5D45; color: #fff; font: 700 17px 'Plus Jakarta Sans', system-ui, sans-serif">Pay R 58.00 and book</button>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

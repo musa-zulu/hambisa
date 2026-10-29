@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>New job offer</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0B5D45}a:hover{color:#083F2F}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #111714; color: #111714; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="padding: 58px 16px 16px; display: flex; flex-direction: column; gap: 12px; color: #fff">
+    <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-radius: 16px; background: #1D2622">
+      <div style="display: flex; flex-direction: column; gap: 2px">
+        <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 800"><span style="width: 10px; height: 10px; border-radius: 50%; background: #3CCB8F"></span>You're online</span>
+        <span style="font-size: 13px; color: #B9C1BC">Location shared while online · <a href="#" style="color: #F4B400">Manage</a></span>
+      </div>
+      <button role="switch" aria-checked="true" aria-label="Online" style="width: 64px; height: 38px; border-radius: 999px; border: 0; background: #3CCB8F; position: relative; padding: 0"><span style="position: absolute; top: 4px; right: 4px; width: 30px; height: 30px; border-radius: 50%; background: #fff"></span></button>
+    </div>
+  </header>
+
+  <section aria-labelledby="offer-h" style="flex: 1; margin: 0 12px; background: #fff; border-radius: 24px 24px 0 0; padding: 20px 20px 34px; display: flex; flex-direction: column; gap: 18px">
+    <div style="display: flex; justify-content: space-between; align-items: center">
+      <h1 id="offer-h" style="margin: 0; font-size: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #3F4943">New job</h1>
+      <span aria-label="Offer expires in 24 seconds" style="display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 12px; border-radius: 999px; background: #FFF3D6; color: #6B4800; font: 700 15px 'JetBrains Mono', monospace">
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="7" fill="none" stroke="#F0D9A0" stroke-width="3"/><path d="M9 2a7 7 0 016.6 9.3" fill="none" stroke="#6B4800" stroke-width="3" stroke-linecap="round"/></svg>0:24
+      </span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 2px">
+      <span style="font-size: 44px; font-weight: 800; letter-spacing: -0.03em; line-height: 1">R 42.00</span>
+      <span style="font-size: 15px; color: #3F4943">Estimated earnings · 3.1 km · ~16 min</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 0; border: 1px solid #E1E4DF; border-radius: 16px; padding: 4px 16px">
+      <div style="display: flex; gap: 14px; align-items: center; min-height: 60px; border-bottom: 1px solid #ECEDEB">
+        <span style="width: 12px; height: 12px; border-radius: 50%; background: #0B5D45"></span>
+        <span style="display: flex; flex-direction: column; flex: 1"><span style="font-size: 13px; color: #5B655F; font-weight: 600">Pickup · 0.8 km away</span><span style="font-size: 17px; font-weight: 700">Gardens</span></span>
+      </div>
+      <div style="display: flex; gap: 14px; align-items: center; min-height: 60px">
+        <span style="width: 12px; height: 12px; border-radius: 3px; background: #111714"></span>
+        <span style="display: flex; flex-direction: column; flex: 1"><span style="font-size: 13px; color: #5B655F; font-weight: 600">Drop-off · deliver by 14:45</span><span style="font-size: 17px; font-weight: 700">Tamboerskloof</span></span>
+      </div>
+    </div>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap">
+      <span style="height: 34px; padding: 0 12px; border-radius: 999px; background: #F4F5F2; display: inline-flex; align-items: center; font-size: 14px; font-weight: 600">Documents</span>
+      <span style="height: 34px; padding: 0 12px; border-radius: 999px; background: #F4F5F2; display: inline-flex; align-items: center; font-size: 14px; font-weight: 600">0.5 kg</span>
+      <span style="height: 34px; padding: 0 12px; border-radius: 999px; background: #F4F5F2; display: inline-flex; align-items: center; font-size: 14px; font-weight: 600">1 item</span>
+    </div>
+    <a href="#" style="font-size: 15px; font-weight: 700; min-height: 44px; display: flex; align-items: center">View full job details</a>
+    <div style="flex: 1"></div>
+    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 10px">
+      <button style="height: 64px; border: 1.5px solid #111714; border-radius: 16px; background: #fff; color: #111714; font: 700 17px 'Plus Jakarta Sans', system-ui, sans-serif">Decline</button>
+      <a href="Rid03-Collect.dc.html" style="height: 64px; border-radius: 16px; background: #0B5D45; color: #fff; text-decoration: none; font-size: 19px; font-weight: 800; display: flex; align-items: center; justify-content: center">Accept job</a>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

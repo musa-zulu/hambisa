@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Support cases</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0B5D45}a:hover{color:#083F2F}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #F4F5F2; color: #111714; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 14px">
+  <nav aria-label="Back office" style="flex: 1 1 220px; background: #111714; color: #fff; padding: 20px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 8px">
+      <svg width="30" height="30" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#0B5D45"/><path d="M17 13l10 9-10 9" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 17h5M6 22h7M8 27h5" stroke="#F4B400" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <span style="display: flex; flex-direction: column"><span style="font-size: 16px; font-weight: 800">Hambisa</span><span style="font-size: 12px; color: #B9C1BC">Back office</span></span>
+    </div>
+    <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px">
+      <sc-for list="{{nav}}" as="n" hint-placeholder-count="10">
+        <li><a href="{{n.href}}" aria-current="{{n.current}}" style="display: flex; justify-content: space-between; align-items: center; height: 40px; padding: 0 10px; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 600; background: {{n.bg}}; color: {{n.fg}}"><span>{{n.label}}</span><span style="font: 600 12px 'JetBrains Mono', monospace; color: #F4B400">{{n.badge}}</span></a></li>
+      </sc-for>
+    </ul>
+    <div style="margin-top: auto; padding: 10px; border-radius: 10px; background: #1D2622; display: flex; flex-direction: column; gap: 2px">
+      <span style="font-size: 13px; font-weight: 700">Sipho N.</span>
+      <span style="font-size: 12px; color: #B9C1BC">Support agent · MFA on</span>
+    </div>
+  </nav>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 24px 32px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px">
+      <h1 style="margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -0.02em">Support</h1>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap">
+        <button style="height: 34px; padding: 0 12px; border-radius: 999px; border: 0; background: #111714; color: #fff; font: 700 13px 'Plus Jakarta Sans', system-ui, sans-serif">Mine · 5</button>
+        <button style="height: 34px; padding: 0 12px; border-radius: 999px; border: 1px solid #C9CEC8; background: #fff; font: 600 13px 'Plus Jakarta Sans', system-ui, sans-serif">Unassigned · 7</button>
+        <button style="height: 34px; padding: 0 12px; border-radius: 999px; border: 1px solid #C9CEC8; background: #fff; font: 600 13px 'Plus Jakarta Sans', system-ui, sans-serif">High severity · 2</button>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+      <ul aria-label="Cases" style="flex: 1 1 280px; min-width: 0; list-style: none; margin: 0; padding: 8px; background: #fff; border: 1px solid #E1E4DF; border-radius: 12px; display: flex; flex-direction: column; gap: 6px">
+        <sc-for list="{{cases}}" as="c" hint-placeholder-count="5">
+          <li><button style="width: 100%; text-align: left; padding: 10px 12px; border-radius: 10px; border: {{c.border}}; background: {{c.bg}}; font: 500 14px 'Plus Jakarta Sans', system-ui, sans-serif; color: #111714; display: flex; flex-direction: column; gap: 4px">
+            <span style="display: flex; justify-content: space-between; width: 100%"><span style="font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 13px">{{c.id}}</span><span style="font-size: 12px; font-weight: 700; color: {{c.sevColor}}">{{c.sev}}</span></span>
+            <span style="font-weight: 700">{{c.title}}</span>
+            <span style="font-size: 12px; color: #3F4943">{{c.meta}}</span>
+          </button></li>
+        </sc-for>
+      </ul>
+
+      <section aria-labelledby="case-h" style="flex: 2 1 440px; min-width: 0; background: #fff; border: 1px solid #E1E4DF; border-radius: 12px; display: flex; flex-direction: column">
+        <div style="padding: 16px; border-bottom: 1px solid #E1E4DF; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px">
+          <div style="display: flex; flex-direction: column; gap: 4px">
+            <span style="font: 600 13px 'JetBrains Mono', monospace; color: #3F4943">CS-3318 · HB-24774</span>
+            <h2 id="case-h" style="margin: 0; font-size: 18px; font-weight: 800">Parcel not delivered, wants refund</h2>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center">
+            <label style="display: flex; flex-direction: column; gap: 2px; font-size: 12px; font-weight: 600; color: #3F4943">Status<select style="height: 34px; border: 1px solid #C9CEC8; border-radius: 8px; padding: 0 8px; font: 600 13px 'Plus Jakarta Sans', system-ui, sans-serif; background: #fff"><option>Waiting on finance</option></select></label>
+            <label style="display: flex; flex-direction: column; gap: 2px; font-size: 12px; font-weight: 600; color: #3F4943">Category<select style="height: 34px; border: 1px solid #C9CEC8; border-radius: 8px; padding: 0 8px; font: 600 13px 'Plus Jakarta Sans', system-ui, sans-serif; background: #fff"><option>Failed delivery</option></select></label>
+          </div>
+        </div>
+        <div style="padding: 16px; display: flex; flex-direction: column; gap: 12px">
+          <div style="align-self: flex-start; max-width: 80%; padding: 12px 14px; border-radius: 12px; background: #F4F5F2; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; font-weight: 700; color: #3F4943">Grace H. · customer · 11:31</span><span>The rider said nobody was home but I was here the whole time. Can I get my money back?</span></div>
+          <div style="padding: 12px 14px; border-radius: 12px; background: #FFF3D6; border: 1px dashed #6B4800; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; font-weight: 700; color: #6B4800">Internal note · Sipho N. · 11:48 · staff only</span><span>Rider GPS shows arrival at 11:18, 2 call attempts logged via masked line. Proof photo shows the right gate. Recommending refund as goodwill — first issue on account.</span></div>
+          <div style="align-self: flex-end; max-width: 80%; padding: 12px 14px; border-radius: 12px; background: #E3F1EB; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; font-weight: 700; color: #0B5D45">Sipho N. · reply to customer · 11:52</span><span>Sorry about this, Grace. I've asked for a full refund of R 72.00. You'll get a message once it's approved.</span></div>
+        </div>
+        <div style="margin: 0 16px 16px; border: 1px solid #C9CEC8; border-radius: 12px; overflow: hidden">
+          <div role="tablist" style="display: flex; border-bottom: 1px solid #E1E4DF">
+            <button role="tab" aria-selected="true" style="height: 40px; padding: 0 14px; border: 0; border-bottom: 3px solid #0B5D45; background: #fff; font: 700 13px 'Plus Jakarta Sans', system-ui, sans-serif; color: #111714">Reply to customer</button>
+            <button role="tab" aria-selected="false" style="height: 40px; padding: 0 14px; border: 0; border-bottom: 3px solid transparent; background: #fff; font: 600 13px 'Plus Jakarta Sans', system-ui, sans-serif; color: #3F4943">Internal note</button>
+          </div>
+          <label for="reply" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Reply to customer</label>
+          <textarea id="reply" rows="3" placeholder="Write a reply Grace will see in the app" style="width: 100%; box-sizing: border-box; border: 0; padding: 12px 14px; font: 500 14px 'Plus Jakarta Sans', system-ui, sans-serif; resize: none"></textarea>
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 10px; background: #FAFBF9">
+            <span style="font-size: 12px; color: #3F4943">Visible to customer</span>
+            <button style="height: 34px; padding: 0 14px; border-radius: 8px; border: 0; background: #0B5D45; color: #fff; font: 700 13px 'Plus Jakarta Sans', system-ui, sans-serif">Send reply</button>
+          </div>
+        </div>
+      </section>
+
+      <aside aria-label="Order context" style="flex: 1 1 260px; min-width: 0; background: #fff; border: 1px solid #E1E4DF; border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+        <h2 style="margin: 0; font-size: 15px; font-weight: 800">Order HB-24774</h2>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap"><span style="display: inline-flex; padding: 3px 9px; border-radius: 999px; font-size: 12px; font-weight: 700; background: #FDE7E4; color: #A1281B">Failed</span><span style="display: inline-flex; padding: 2px 7px; border-radius: 5px; border: 1px solid #E1E4DF; font-size: 12px; font-weight: 700; color: #6B4800">Refund pending</span></div>
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <div style="display: flex; justify-content: space-between"><span style="color: #3F4943">Route</span><span style="font-weight: 600">Claremont → Newlands</span></div>
+          <div style="display: flex; justify-content: space-between"><span style="color: #3F4943">Rider</span><span style="font-weight: 600">Kyle D.</span></div>
+          <div style="display: flex; justify-content: space-between"><span style="color: #3F4943">Failure code</span><span style="font: 600 12px 'JetBrains Mono', monospace">RECIPIENT_UNAVAILABLE</span></div>
+          <div style="display: flex; justify-content: space-between"><span style="color: #3F4943">Attempts</span><span style="font-weight: 600">2 calls · 6 min wait</span></div>
+          <div style="display: flex; justify-content: space-between"><span style="color: #3F4943">Past cases</span><span style="font-weight: 600">None</span></div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <a href="Bo02-Orders.dc.html" style="height: 38px; border-radius: 8px; border: 1px solid #C9CEC8; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #111714; text-decoration: none">Open order</a>
+          <a href="#" style="height: 38px; border-radius: 8px; border: 1px solid #C9CEC8; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #111714; text-decoration: none">Review proof</a>
+          <a href="Bo05-Payments.dc.html" style="height: 38px; border-radius: 8px; border: 1px solid #C9CEC8; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #111714; text-decoration: none">Refund status</a>
+        </div>
+      </aside>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+renderVals() {
+const items = [['Dashboard','Bo01-Dashboard.dc.html',''],['Orders','Bo02-Orders.dc.html',''],['Dispatch','Bo03-Dispatch.dc.html','7'],['Riders','Bo04-Riders.dc.html','4'],['Customers','#',''],['Merchants','Mer01-BulkBooking.dc.html',''],['Payments','Bo05-Payments.dc.html',''],['Support','Bo07-Support.dc.html','12'],['Reports','Bo08-Reports.dc.html',''],['Settings','Bo06-Pricing.dc.html','']];
+const active = 'Support';
+const nav = items.map(([label, href, badge]) => ({ label, href, badge, current: label === active ? 'page' : 'false', bg: label === active ? '#0B5D45' : 'transparent', fg: label === active ? '#FFFFFF' : '#C9CEC8' }));
+const cases = [
+  ['CS-3318','Parcel not delivered, wants refund','HB-24774 · Grace H. · 1 h','Medium','#6B4800', true],
+  ['CS-3321','Damaged parcel on arrival','HB-24702 · Kloof Bakery · 40 min','High','#A1281B', false],
+  ['CS-3315','Charged twice','HB-24760 · Pieter V. · 2 h','High','#A1281B', false],
+  ['CS-3309','Rider was rude at pickup','HB-24688 · Fatima A. · 3 h','Medium','#6B4800', false],
+  ['CS-3302','Change of drop-off address','HB-24655 · Ruth P. · yesterday','Low','#3F4943', false]
+].map(([id, title, meta, sev, sevColor, sel]) => ({ id, title, meta, sev, sevColor, bg: sel ? '#EEF6F2' : '#FFFFFF', border: sel ? '2px solid #0B5D45' : '1px solid #E1E4DF' }));
+return { nav, cases };
+}
+}
+</script>
+</body>
+</html>

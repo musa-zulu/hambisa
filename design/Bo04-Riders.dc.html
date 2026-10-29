@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rider management</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0B5D45}a:hover{color:#083F2F}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #F4F5F2; color: #111714; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 14px">
+  <nav aria-label="Back office" style="flex: 1 1 220px; background: #111714; color: #fff; padding: 20px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 8px">
+      <svg width="30" height="30" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#0B5D45"/><path d="M17 13l10 9-10 9" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 17h5M6 22h7M8 27h5" stroke="#F4B400" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <span style="display: flex; flex-direction: column"><span style="font-size: 16px; font-weight: 800">Hambisa</span><span style="font-size: 12px; color: #B9C1BC">Back office</span></span>
+    </div>
+    <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px">
+      <sc-for list="{{nav}}" as="n" hint-placeholder-count="10">
+        <li><a href="{{n.href}}" aria-current="{{n.current}}" style="display: flex; justify-content: space-between; align-items: center; height: 40px; padding: 0 10px; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 600; background: {{n.bg}}; color: {{n.fg}}"><span>{{n.label}}</span><span style="font: 600 12px 'JetBrains Mono', monospace; color: #F4B400">{{n.badge}}</span></a></li>
+      </sc-for>
+    </ul>
+    <div style="margin-top: auto; padding: 10px; border-radius: 10px; background: #1D2622; display: flex; flex-direction: column; gap: 2px">
+      <span style="font-size: 13px; font-weight: 700">Ravi P.</span>
+      <span style="font-size: 12px; color: #B9C1BC">Rider verifier · MFA on</span>
+    </div>
+  </nav>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 24px 32px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px">
+      <h1 style="margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -0.02em">Riders</h1>
+      <div role="tablist" style="display: flex; gap: 4px; padding: 4px; border-radius: 10px; background: #E9EBE7">
+        <button role="tab" aria-selected="false" style="height: 34px; padding: 0 12px; border: 0; border-radius: 7px; background: transparent; font: 600 13px 'Plus Jakarta Sans', system-ui, sans-serif; color: #3F4943">All · 186</button>
+        <button role="tab" aria-selected="true" style="height: 34px; padding: 0 12px; border: 0; border-radius: 7px; background: #fff; font: 700 13px 'Plus Jakarta Sans', system-ui, sans-serif; color: #111714">Needs review · 4</button>
+        <button role="tab" aria-selected="false" style="height: 34px; padding: 0 12px; border: 0; border-radius: 7px; background: transparent; font: 600 13px 'Plus Jakarta Sans', system-ui, sans-serif; color: #3F4943">Expiring soon · 9</button>
+        <button role="tab" aria-selected="false" style="height: 34px; padding: 0 12px; border: 0; border-radius: 7px; background: transparent; font: 600 13px 'Plus Jakarta Sans', system-ui, sans-serif; color: #3F4943">Suspended · 3</button>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+      <section style="flex: 2 1 440px; min-width: 0; background: #fff; border: 1px solid #E1E4DF; border-radius: 12px; overflow: hidden">
+        <div style="overflow-x: auto">
+          <table style="width: 100%; border-collapse: collapse; min-width: 560px">
+            <thead><tr style="text-align: left; color: #3F4943; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; background: #FAFBF9">
+              <th style="padding: 10px 14px; font-weight: 700">Rider</th><th style="padding: 10px 14px; font-weight: 700">Verification</th><th style="padding: 10px 14px; font-weight: 700">Zone</th><th style="padding: 10px 14px; font-weight: 700">Submitted</th>
+            </tr></thead>
+            <tbody>
+              <sc-for list="{{riders}}" as="r" hint-placeholder-count="4">
+                <tr style="border-top: 1px solid #ECEDEB; background: {{r.rowBg}}">
+                  <td style="padding: 12px 14px"><span style="display: flex; flex-direction: column"><a href="#" style="font-weight: 700; color: #111714">{{r.name}}</a><span style="font-size: 12px; color: #5B655F">{{r.phone}}</span></span></td>
+                  <td style="padding: 12px 14px"><span style="display: inline-flex; padding: 3px 9px; border-radius: 999px; font-size: 12px; font-weight: 700; background: {{r.bg}}; color: {{r.fg}}">{{r.state}}</span></td>
+                  <td style="padding: 12px 14px">{{r.zone}}</td>
+                  <td style="padding: 12px 14px; color: #3F4943">{{r.when}}</td>
+                </tr>
+              </sc-for>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <aside aria-label="Andile Khumalo" style="flex: 3 1 520px; min-width: 0; background: #fff; border: 1px solid #E1E4DF; border-radius: 12px; display: flex; flex-direction: column">
+        <div style="padding: 16px; border-bottom: 1px solid #E1E4DF; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center">
+          <div style="display: flex; align-items: center; gap: 12px">
+            <span style="width: 44px; height: 44px; border-radius: 50%; background: #C9CEC8; display: flex; align-items: center; justify-content: center; font-weight: 800">AK</span>
+            <div style="display: flex; flex-direction: column"><span style="font-size: 18px; font-weight: 800">Andile Khumalo</span><span style="color: #3F4943">Scooter 125cc · top box · zones: CBD, Southern Suburbs</span></div>
+          </div>
+          <span style="display: inline-flex; padding: 3px 9px; border-radius: 999px; font-size: 12px; font-weight: 700; background: #FFF3D6; color: #6B4800">Under review</span>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 0">
+          <ul aria-label="Documents" style="flex: 1 1 220px; list-style: none; margin: 0; padding: 8px; display: flex; flex-direction: column; gap: 4px; border-right: 1px solid #E1E4DF">
+            <sc-for list="{{docs}}" as="d" hint-placeholder-count="5">
+              <li><button style="width: 100%; text-align: left; padding: 10px; border-radius: 8px; border: 0; background: {{d.bg}}; font: 500 14px 'Plus Jakarta Sans', system-ui, sans-serif; color: #111714; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 700">{{d.name}}</span><span style="font-size: 12px; font-weight: 600; color: {{d.color}}">{{d.state}}</span></button></li>
+            </sc-for>
+          </ul>
+          <div style="flex: 2 1 300px; min-width: 0; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+            <div style="display: flex; justify-content: space-between; align-items: center"><h2 style="margin: 0; font-size: 16px; font-weight: 800">Insurance certificate</h2><span style="font-size: 12px; color: #5B655F">Viewing is logged</span></div>
+            <div style="height: 220px; border-radius: 10px; background: repeating-linear-gradient(135deg, #F4F5F2 0 12px, #ECEDEB 12px 24px); border: 1px solid #E1E4DF; display: flex; align-items: center; justify-content: center; color: #3F4943; font-weight: 600">Document preview · signed link, expires in 5 min</div>
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+              <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; font-weight: 600; color: #5B655F">Policy holder</span><span style="font-weight: 600">A. Khumalo</span></div>
+              <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; font-weight: 600; color: #5B655F">Expiry</span><span style="font-weight: 700; color: #A1281B">19 Oct 2026 · expired</span></div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 4px">
+              <label for="reason" style="font-weight: 700">Reason <span style="font-weight: 500; color: #5B655F">(required to reject or request changes)</span></label>
+              <textarea id="reason" rows="2" style="border: 1px solid #C9CEC8; border-radius: 8px; padding: 8px 10px; font: 500 14px 'Plus Jakarta Sans', system-ui, sans-serif; resize: vertical">Certificate expired on 19 Oct. Upload the renewed policy.</textarea>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px">
+              <button disabled title="Expired documents can't be approved" style="height: 38px; padding: 0 14px; border-radius: 8px; border: 0; background: #E1E4DF; color: #5B655F; font: 700 13px 'Plus Jakarta Sans', system-ui, sans-serif">Approve</button>
+              <button style="height: 38px; padding: 0 14px; border-radius: 8px; border: 0; background: #111714; color: #fff; font: 700 13px 'Plus Jakarta Sans', system-ui, sans-serif">Request resubmission</button>
+              <button style="height: 38px; padding: 0 14px; border-radius: 8px; border: 0; background: #FDE7E4; color: #A1281B; font: 700 13px 'Plus Jakarta Sans', system-ui, sans-serif">Reject</button>
+            </div>
+          </div>
+        </div>
+        <div style="padding: 12px 16px; border-top: 1px solid #E1E4DF; display: flex; flex-direction: column; gap: 6px">
+          <h3 style="margin: 0; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #3F4943">Audit</h3>
+          <span style="color: #3F4943"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px">22 Oct 09:14</span> · ID approved by Ravi P.</span>
+          <span style="color: #3F4943"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px">21 Oct 17:40</span> · Documents submitted by rider</span>
+        </div>
+      </aside>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+renderVals() {
+const items = [['Dashboard','Bo01-Dashboard.dc.html',''],['Orders','Bo02-Orders.dc.html',''],['Dispatch','Bo03-Dispatch.dc.html','7'],['Riders','Bo04-Riders.dc.html','4'],['Customers','#',''],['Merchants','Mer01-BulkBooking.dc.html',''],['Payments','Bo05-Payments.dc.html',''],['Support','Bo07-Support.dc.html','12'],['Reports','Bo08-Reports.dc.html',''],['Settings','Bo06-Pricing.dc.html','']];
+const active = 'Riders';
+const nav = items.map(([label, href, badge]) => ({ label, href, badge, current: label === active ? 'page' : 'false', bg: label === active ? '#0B5D45' : 'transparent', fg: label === active ? '#FFFFFF' : '#C9CEC8' }));
+const S = { warn:['#FFF3D6','#6B4800'], blue:['#E5EEFB','#1F4FA3'], red:['#FDE7E4','#A1281B'] };
+const riders = [
+  ['Andile Khumalo','+27 72 *** 0187','Under review','warn','CBD','Today 08:02', true],
+  ['Bongani Dube','+27 83 *** 4410','Submitted','blue','Southern Suburbs','Today 07:41', false],
+  ['Chantal Adams','+27 61 *** 9921','Resubmitted','blue','Atlantic Seaboard','Yesterday', false],
+  ['Musa Ngcobo','+27 79 *** 3375','Expired document','red','Northern Suburbs','Yesterday', false]
+].map(([name, phone, state, k, zone, when, sel]) => ({ name, phone, state, zone, when, bg:S[k][0], fg:S[k][1], rowBg: sel ? '#EEF6F2' : '#FFFFFF' }));
+const docs = [
+  {name:'Identity document', state:'Approved', color:'#0B5D45', bg:'transparent'},
+  {name:'Riding licence', state:'Approved · exp 03/2029', color:'#0B5D45', bg:'transparent'},
+  {name:'Motorcycle registration', state:'Approved', color:'#0B5D45', bg:'transparent'},
+  {name:'Insurance certificate', state:'Needs decision', color:'#6B4800', bg:'#F4F5F2'},
+  {name:'Roadworthy certificate', state:'Needs decision', color:'#6B4800', bg:'transparent'}
+];
+return { nav, riders, docs };
+}
+}
+</script>
+</body>
+</html>

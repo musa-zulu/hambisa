@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Order management</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0B5D45}a:hover{color:#083F2F}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #F4F5F2; color: #111714; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 14px">
+  <nav aria-label="Back office" style="flex: 1 1 220px; background: #111714; color: #fff; padding: 20px 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 8px">
+      <svg width="30" height="30" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#0B5D45"/><path d="M17 13l10 9-10 9" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 17h5M6 22h7M8 27h5" stroke="#F4B400" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <span style="display: flex; flex-direction: column"><span style="font-size: 16px; font-weight: 800">Hambisa</span><span style="font-size: 12px; color: #B9C1BC">Back office</span></span>
+    </div>
+    <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px">
+      <sc-for list="{{nav}}" as="n" hint-placeholder-count="10">
+        <li><a href="{{n.href}}" aria-current="{{n.current}}" style="display: flex; justify-content: space-between; align-items: center; height: 40px; padding: 0 10px; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 600; background: {{n.bg}}; color: {{n.fg}}"><span>{{n.label}}</span><span style="font: 600 12px 'JetBrains Mono', monospace; color: #F4B400">{{n.badge}}</span></a></li>
+      </sc-for>
+    </ul>
+    <div style="margin-top: auto; padding: 10px; border-radius: 10px; background: #1D2622; display: flex; flex-direction: column; gap: 2px">
+      <span style="font-size: 13px; font-weight: 700">Nomsa D.</span>
+      <span style="font-size: 12px; color: #B9C1BC">Dispatcher · MFA on</span>
+    </div>
+  </nav>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 24px 32px 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px">
+      <h1 style="margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -0.02em">Orders</h1>
+      <div style="display: flex; gap: 8px; flex: 1 1 360px; max-width: 520px">
+        <label for="q" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Search orders</label>
+        <input id="q" placeholder="Order ID, customer, recipient, rider or phone" style="flex: 1; min-width: 0; height: 40px; border: 1px solid #C9CEC8; border-radius: 8px; padding: 0 12px; font: 500 14px 'Plus Jakarta Sans', system-ui, sans-serif; background: #fff; color: #111714">
+        <button style="height: 40px; padding: 0 14px; border: 1px solid #C9CEC8; border-radius: 8px; background: #fff; font: 600 14px 'Plus Jakarta Sans', system-ui, sans-serif; color: #111714">Export</button>
+      </div>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 8px">
+      <sc-for list="{{filters}}" as="f" hint-placeholder-count="7">
+        <button style="height: 34px; padding: 0 12px; border-radius: 999px; border: 1px solid #C9CEC8; background: #fff; font: 600 13px 'Plus Jakarta Sans', system-ui, sans-serif; color: #111714; display: flex; align-items: center; gap: 6px">{{f.label}}<span style="color: #0B5D45; font-weight: 700">{{f.value}}</span></button>
+      </sc-for>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+      <section style="flex: 3 1 520px; min-width: 0; background: #fff; border: 1px solid #E1E4DF; border-radius: 12px; overflow: hidden">
+        <div style="overflow-x: auto">
+          <table style="width: 100%; border-collapse: collapse; min-width: 640px">
+            <thead><tr style="text-align: left; color: #3F4943; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; background: #FAFBF9">
+              <th style="padding: 10px 14px; font-weight: 700">Order</th><th style="padding: 10px 14px; font-weight: 700">Status</th><th style="padding: 10px 14px; font-weight: 700">Payment</th><th style="padding: 10px 14px; font-weight: 700">Customer</th><th style="padding: 10px 14px; font-weight: 700">Rider</th><th style="padding: 10px 14px; font-weight: 700">Created</th>
+            </tr></thead>
+            <tbody>
+              <sc-for list="{{orders}}" as="o" hint-placeholder-count="12">
+                <tr style="border-top: 1px solid #ECEDEB; background: {{o.rowBg}}">
+                  <td style="padding: 11px 14px"><a href="#" style="font-family: 'JetBrains Mono', monospace; font-weight: 600; color: #111714">{{o.ref}}</a></td>
+                  <td style="padding: 11px 14px"><span style="display: inline-flex; padding: 3px 9px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; background: {{o.bg}}; color: {{o.fg}}">{{o.status}}</span></td>
+                  <td style="padding: 11px 14px"><span style="display: inline-flex; padding: 2px 7px; border-radius: 5px; border: 1px solid #E1E4DF; font-size: 12px; font-weight: 600; color: #3F4943; white-space: nowrap">{{o.pay}}</span></td>
+                  <td style="padding: 11px 14px">{{o.customer}}</td>
+                  <td style="padding: 11px 14px; color: {{o.riderColor}}">{{o.rider}}</td>
+                  <td style="padding: 11px 14px; color: #3F4943">{{o.created}}</td>
+                </tr>
+              </sc-for>
+            </tbody>
+          </table>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-top: 1px solid #E1E4DF; color: #3F4943">
+          <span>1–12 of 412</span>
+          <div style="display: flex; gap: 6px"><button style="height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid #C9CEC8; background: #fff; font: 600 13px 'Plus Jakarta Sans', system-ui, sans-serif">Previous</button><button style="height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid #C9CEC8; background: #fff; font: 600 13px 'Plus Jakarta Sans', system-ui, sans-serif">Next</button></div>
+        </div>
+      </section>
+
+      <aside aria-label="Order HB-24817" style="flex: 2 1 380px; min-width: 0; background: #fff; border: 1px solid #E1E4DF; border-radius: 12px; display: flex; flex-direction: column">
+        <div style="padding: 16px; border-bottom: 1px solid #E1E4DF; display: flex; flex-direction: column; gap: 10px">
+          <div style="display: flex; justify-content: space-between; align-items: center"><span style="font: 600 18px 'JetBrains Mono', monospace">HB-24817</span><button aria-label="Close" style="width: 32px; height: 32px; border: 0; background: none"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13" stroke="#111714" stroke-width="2" stroke-linecap="round"/></svg></button></div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap"><span style="display: inline-flex; padding: 3px 9px; border-radius: 999px; font-size: 12px; font-weight: 700; background: #E5EEFB; color: #1F4FA3">In transit</span><span style="display: inline-flex; padding: 2px 7px; border-radius: 5px; border: 1px solid #E1E4DF; font-size: 12px; font-weight: 600; color: #0B5D45">Captured</span><span style="font-size: 12px; color: #3F4943; align-self: center">Instant · Documents 0.5 kg</span></div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap">
+            <button style="height: 36px; padding: 0 12px; border-radius: 8px; border: 0; background: #111714; color: #fff; font: 700 13px 'Plus Jakarta Sans', system-ui, sans-serif">Reassign</button>
+            <button style="height: 36px; padding: 0 12px; border-radius: 8px; border: 1px solid #C9CEC8; background: #fff; font: 600 13px 'Plus Jakarta Sans', system-ui, sans-serif">Contact</button>
+            <button style="height: 36px; padding: 0 12px; border-radius: 8px; border: 1px solid #C9CEC8; background: #fff; font: 600 13px 'Plus Jakarta Sans', system-ui, sans-serif">Add note</button>
+            <button style="height: 36px; padding: 0 12px; border-radius: 8px; border: 1px solid #C9CEC8; background: #fff; font: 600 13px 'Plus Jakarta Sans', system-ui, sans-serif">Open case</button>
+            <button disabled title="Cancellation after collection goes through the exception workflow" style="height: 36px; padding: 0 12px; border-radius: 8px; border: 1px solid #E1E4DF; background: #F4F5F2; font: 600 13px 'Plus Jakarta Sans', system-ui, sans-serif; color: #5B655F">Cancel</button>
+          </div>
+        </div>
+        <div style="padding: 16px; display: flex; flex-direction: column; gap: 16px">
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+            <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; font-weight: 600; color: #5B655F">Customer</span><span style="font-weight: 600">Musa Z.</span></div>
+            <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; font-weight: 600; color: #5B655F">Recipient</span><span style="font-weight: 600">Lerato K.</span></div>
+            <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; font-weight: 600; color: #5B655F">Rider</span><span style="font-weight: 600">Thabo M. · <span style="color: #0B5D45">live 8 s</span></span></div>
+            <div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; font-weight: 600; color: #5B655F">Quote snapshot</span><span style="font-weight: 600">R 68.00 · pricing v12</span></div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <h2 style="margin: 0; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #3F4943">Timeline</h2>
+            <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0">
+              <sc-for list="{{timeline}}" as="t" hint-placeholder-count="6">
+                <li style="display: grid; grid-template-columns: 56px 1fr; gap: 10px; padding: 7px 0; border-top: 1px solid #F0F1EE">
+                  <span style="font: 500 12px 'JetBrains Mono', monospace; color: #3F4943">{{t.time}}</span>
+                  <span style="display: flex; flex-direction: column"><span style="font-weight: 600">{{t.event}}</span><span style="font-size: 12px; color: #5B655F">{{t.actor}}</span></span>
+                </li>
+              </sc-for>
+            </ol>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <h2 style="margin: 0; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #3F4943">Payment events</h2>
+            <span style="color: #3F4943">14:01 intent created · 14:01 provider callback verified · captured R 58.00 <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px">ref PX-88213</span></span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+renderVals() {
+const items = [['Dashboard','Bo01-Dashboard.dc.html',''],['Orders','Bo02-Orders.dc.html',''],['Dispatch','Bo03-Dispatch.dc.html','7'],['Riders','Bo04-Riders.dc.html','4'],['Customers','#',''],['Merchants','Mer01-BulkBooking.dc.html',''],['Payments','Bo05-Payments.dc.html',''],['Support','Bo07-Support.dc.html','12'],['Reports','Bo08-Reports.dc.html',''],['Settings','Bo06-Pricing.dc.html','']];
+const active = 'Orders';
+const nav = items.map(([label, href, badge]) => ({ label, href, badge, current: label === active ? 'page' : 'false', bg: label === active ? '#0B5D45' : 'transparent', fg: label === active ? '#FFFFFF' : '#C9CEC8' }));
+const filters = [{label:'Status',value:'Any'},{label:'Created',value:'Today'},{label:'Service area',value:'Cape Town Metro'},{label:'Payment',value:'Any'},{label:'Assignment',value:'Any'},{label:'Type',value:'Any'},{label:'Exception',value:'Any'}];
+const S = { warn:['#FFF3D6','#6B4800'], blue:['#E5EEFB','#1F4FA3'], green:['#E3F1EB','#0B5D45'], red:['#FDE7E4','#A1281B'], grey:['#ECEDEB','#3F4943'] };
+const raw = [
+  ['HB-24829','Ready for dispatch','warn','Captured','Ayanda S.','Unassigned','14:24'],
+  ['HB-24817','In transit','blue','Captured','Musa Z.','Thabo M.','14:01'],
+  ['HB-24812','Assigned','blue','Captured','Kloof Bakery','Zinhle B.','13:58'],
+  ['HB-24806','Awaiting payment','warn','Pending','Pieter V.','—','13:55'],
+  ['HB-24801','Collected','blue','Captured','Fatima A.','Sipho N.','13:49'],
+  ['HB-24798','Delivered','green','Captured','James O.','Thabo M.','13:31'],
+  ['HB-24795','In transit','blue','Authorised','Naledi M.','Kyle D.','13:30'],
+  ['HB-24790','Delivered','green','Captured','Ruth P.','Thabo M.','12:02'],
+  ['HB-24786','Cancelled','grey','Refunded','Lwazi T.','—','11:47'],
+  ['HB-24774','Failed','red','Refund pending','Grace H.','Kyle D.','11:20'],
+  ['HB-24771','Expired','grey','Failed','Sam W.','—','11:12'],
+  ['HB-24766','Delivered','green','Captured','Ocean Florist','Zinhle B.','10:58']
+];
+const orders = raw.map(([ref,status,k,pay,customer,rider,created]) => ({ ref, status, pay, customer, rider, created, bg:S[k][0], fg:S[k][1], riderColor: rider === 'Unassigned' ? '#6B4800' : '#111714', rowBg: ref === 'HB-24817' ? '#EEF6F2' : '#FFFFFF' }));
+const timeline = [
+  {time:'14:01', event:'Order created, payment captured', actor:'Customer app · quote Q-7781'},
+  {time:'14:02', event:'Offered to Thabo M., accepted', actor:'Dispatch auto-assign'},
+  {time:'14:12', event:'Arrived at pickup', actor:'Rider · within 40 m geofence'},
+  {time:'14:19', event:'Collected · code verified', actor:'Rider'},
+  {time:'14:21', event:'In transit', actor:'Rider'},
+  {time:'14:26', event:'Note: gate code shared', actor:'Nomsa D. · internal'}
+];
+return { nav, filters, orders, timeline };
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Confirm delivery</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0B5D45}a:hover{color:#083F2F}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F4F5F2; color: #111714; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; display: flex; flex-direction: column">
+  <header style="padding: 58px 16px 16px; background: #111714; color: #fff; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; justify-content: space-between; align-items: center">
+      <span style="font: 600 14px 'JetBrains Mono', monospace; color: #B9C1BC">HB-24817</span>
+      <a href="#" style="color: #F4B400; font-size: 14px; font-weight: 700; min-height: 44px; display: flex; align-items: center">Need help</a>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+      <div style="display: flex; flex-direction: column; gap: 6px"><span style="height: 6px; border-radius: 3px; background: #3CCB8F"></span><span style="font-size: 13px; font-weight: 600; color: #B9C1BC">1 · Collected</span></div>
+      <div style="display: flex; flex-direction: column; gap: 6px"><span style="height: 6px; border-radius: 3px; background: #F4B400"></span><span style="font-size: 13px; font-weight: 800">2 · Deliver</span></div>
+    </div>
+  </header>
+
+  <div style="flex: 1; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+    <h1 style="margin: 0; font-size: 24px; font-weight: 800; letter-spacing: -0.02em">Hand over to Lerato K.</h1>
+    <section style="background: #fff; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+      <label for="dc1" style="font-size: 15px; font-weight: 800">Recipient's delivery code</label>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px">
+        <input id="dc1" value="4" aria-label="Code digit 1" style="height: 68px; min-width: 0; text-align: center; border: 2px solid #0B5D45; border-radius: 14px; font: 700 30px 'JetBrains Mono', monospace; color: #111714; background: #E3F1EB">
+        <input value="8" aria-label="Code digit 2" style="height: 68px; min-width: 0; text-align: center; border: 2px solid #0B5D45; border-radius: 14px; font: 700 30px 'JetBrains Mono', monospace; color: #111714; background: #E3F1EB">
+        <input value="2" aria-label="Code digit 3" style="height: 68px; min-width: 0; text-align: center; border: 2px solid #0B5D45; border-radius: 14px; font: 700 30px 'JetBrains Mono', monospace; color: #111714; background: #E3F1EB">
+        <input value="7" aria-label="Code digit 4" style="height: 68px; min-width: 0; text-align: center; border: 2px solid #0B5D45; border-radius: 14px; font: 700 30px 'JetBrains Mono', monospace; color: #111714; background: #E3F1EB">
+      </div>
+      <span role="status" style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: #0B5D45"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3L13 4.5" fill="none" stroke="#0B5D45" stroke-width="2.2" stroke-linecap="round"/></svg>Code matches</span>
+    </section>
+
+    <section style="background: #fff; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+      <span style="font-size: 15px; font-weight: 800">Photo at handover</span>
+      <div style="display: flex; gap: 10px">
+        <div style="width: 96px; height: 96px; border-radius: 12px; background: #C9CEC8; display: flex; align-items: flex-end; justify-content: flex-start; padding: 6px; box-sizing: border-box"><span style="font-size: 11px; font-weight: 700; color: #111714; background: #fff; padding: 2px 6px; border-radius: 4px">14:38</span></div>
+        <button style="flex: 1; height: 96px; border: 1.5px dashed #9AA39D; border-radius: 12px; background: #fff; font: 700 15px 'Plus Jakarta Sans', system-ui, sans-serif; color: #111714">Retake photo</button>
+      </div>
+      <span style="font-size: 13px; color: #5B655F">Saved securely. It can't be replaced once you complete.</span>
+    </section>
+
+    <div style="flex: 1"></div>
+  </div>
+
+  <footer style="padding: 12px 16px 34px; background: #fff; border-top: 1px solid #E1E4DF; display: flex; flex-direction: column; gap: 6px">
+    <button style="height: 64px; border: 0; border-radius: 16px; background: #0B5D45; color: #fff; font: 800 19px 'Plus Jakarta Sans', system-ui, sans-serif">Complete delivery</button>
+    <button style="height: 48px; border: 0; background: none; font: 700 15px 'Plus Jakarta Sans', system-ui, sans-serif; color: #A1281B">Can't deliver — report failed attempt</button>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

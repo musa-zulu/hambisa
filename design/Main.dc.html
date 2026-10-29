@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Hambisa UI foundations</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0B5D45}a:hover{color:#083F2F}
+</style>
+</helmet>
+<div style="width: 1200px; height: 760px; box-sizing: border-box; padding: 48px; background: #F4F5F2; color: #111714; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px">
+  <div style="display: flex; flex-direction: column; gap: 28px">
+    <div style="display: flex; align-items: center; gap: 12px">
+      <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="12" fill="#0B5D45"/><path d="M17 13l10 9-10 9" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 17h5M6 22h7M8 27h5" stroke="#F4B400" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <div style="display: flex; flex-direction: column">
+        <span style="font-size: 24px; font-weight: 800; letter-spacing: -0.02em">Hambisa</span>
+        <span style="font-size: 13px; color: #5B655F">Placeholder name and mark</span>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <h2 style="margin: 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: #5B655F">Colour</h2>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+        <div style="display: flex; flex-direction: column; gap: 6px"><div style="height: 56px; border-radius: 10px; background: #0B5D45"></div><span style="font-size: 13px; font-weight: 600">Route green</span><span style="font-size: 12px; color: #5B655F; font-family: 'JetBrains Mono', monospace">#0B5D45 · primary</span></div>
+        <div style="display: flex; flex-direction: column; gap: 6px"><div style="height: 56px; border-radius: 10px; background: #F4B400"></div><span style="font-size: 13px; font-weight: 600">Signal amber</span><span style="font-size: 12px; color: #5B655F; font-family: 'JetBrains Mono', monospace">#F4B400 · attention</span></div>
+        <div style="display: flex; flex-direction: column; gap: 6px"><div style="height: 56px; border-radius: 10px; background: #111714"></div><span style="font-size: 13px; font-weight: 600">Ink</span><span style="font-size: 12px; color: #5B655F; font-family: 'JetBrains Mono', monospace">#111714 · text, nav</span></div>
+        <div style="display: flex; flex-direction: column; gap: 6px"><div style="height: 56px; border-radius: 10px; background: #F4F5F2; border: 1px solid #E1E4DF"></div><span style="font-size: 13px; font-weight: 600">Ground</span><span style="font-size: 12px; color: #5B655F; font-family: 'JetBrains Mono', monospace">#F4F5F2 · #FFFFFF cards</span></div>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <h2 style="margin: 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: #5B655F">Type · Plus Jakarta Sans</h2>
+      <span style="font-size: 32px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1">Arriving in 12 min</span>
+      <span style="font-size: 20px; font-weight: 700">Section title 20/700</span>
+      <span style="font-size: 16px">Body 16/400 — minimum on mobile</span>
+      <span style="font-size: 14px; color: #3F4943">Table and back-office body 14/400</span>
+      <span style="font-size: 14px; font-family: 'JetBrains Mono', monospace; font-weight: 600">HB-24817 · references in mono</span>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 24px">
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <h2 style="margin: 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: #5B655F">Order status chips</h2>
+      <p style="margin: 0; font-size: 13px; color: #3F4943; line-height: 1.5">Shape + label + colour, never colour alone. Same chip in every app.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px">
+        <span style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; background: #ECEDEB; color: #3F4943; font-size: 13px; font-weight: 600"><span style="width: 8px; height: 8px; border-radius: 2px; border: 1.5px solid #3F4943"></span>Draft</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; background: #FFF3D6; color: #6B4800; font-size: 13px; font-weight: 600"><span style="width: 8px; height: 8px; border-radius: 50%; border: 2px solid #6B4800; box-sizing: border-box"></span>Awaiting payment</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; background: #FFF3D6; color: #6B4800; font-size: 13px; font-weight: 600"><span style="width: 8px; height: 8px; border-radius: 50%; border: 2px solid #6B4800; box-sizing: border-box"></span>Ready for dispatch</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; background: #E5EEFB; color: #1F4FA3; font-size: 13px; font-weight: 600"><span style="width: 8px; height: 8px; border-radius: 50%; background: #1F4FA3"></span>Assigned</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; background: #E5EEFB; color: #1F4FA3; font-size: 13px; font-weight: 600"><span style="width: 8px; height: 8px; border-radius: 50%; background: #1F4FA3"></span>Rider to pickup</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; background: #E5EEFB; color: #1F4FA3; font-size: 13px; font-weight: 600"><span style="width: 8px; height: 8px; border-radius: 50%; background: #1F4FA3"></span>Collected</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; background: #E5EEFB; color: #1F4FA3; font-size: 13px; font-weight: 600"><span style="width: 8px; height: 8px; border-radius: 50%; background: #1F4FA3"></span>In transit</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; background: #E3F1EB; color: #0B5D45; font-size: 13px; font-weight: 700"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3.5" fill="none" stroke="#0B5D45" stroke-width="2" stroke-linecap="round"/></svg>Delivered</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; background: #FDE7E4; color: #A1281B; font-size: 13px; font-weight: 700"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 3l6 6M9 3l-6 6" stroke="#A1281B" stroke-width="2" stroke-linecap="round"/></svg>Failed</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; background: #ECEDEB; color: #3F4943; font-size: 13px; font-weight: 600"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6h7" stroke="#3F4943" stroke-width="2" stroke-linecap="round"/></svg>Cancelled</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 9px; border-radius: 999px; background: #FFFFFF; border: 1px dashed #5B655F; color: #3F4943; font-size: 13px; font-weight: 600"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="4.5" fill="none" stroke="#3F4943" stroke-width="1.5"/><path d="M6 3.5V6l1.5 1" stroke="#3F4943" stroke-width="1.5" stroke-linecap="round"/></svg>Expired</span>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <h2 style="margin: 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: #5B655F">Payment status — separate chip set</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px">
+        <span style="padding: 4px 9px; border-radius: 6px; border: 1px solid #E1E4DF; background: #fff; font-size: 12px; font-weight: 600; color: #3F4943">Pending</span>
+        <span style="padding: 4px 9px; border-radius: 6px; border: 1px solid #E1E4DF; background: #fff; font-size: 12px; font-weight: 600; color: #1F4FA3">Authorised</span>
+        <span style="padding: 4px 9px; border-radius: 6px; border: 1px solid #E1E4DF; background: #fff; font-size: 12px; font-weight: 600; color: #0B5D45">Captured</span>
+        <span style="padding: 4px 9px; border-radius: 6px; border: 1px solid #E1E4DF; background: #fff; font-size: 12px; font-weight: 600; color: #A1281B">Failed</span>
+        <span style="padding: 4px 9px; border-radius: 6px; border: 1px solid #E1E4DF; background: #fff; font-size: 12px; font-weight: 600; color: #6B4800">Refund pending</span>
+        <span style="padding: 4px 9px; border-radius: 6px; border: 1px solid #E1E4DF; background: #fff; font-size: 12px; font-weight: 600; color: #3F4943">Partially refunded</span>
+        <span style="padding: 4px 9px; border-radius: 6px; border: 1px solid #E1E4DF; background: #fff; font-size: 12px; font-weight: 600; color: #3F4943">Refunded</span>
+        <span style="padding: 4px 9px; border-radius: 6px; border: 1px solid #E1E4DF; background: #fff; font-size: 12px; font-weight: 600; color: #A1281B">Disputed</span>
+      </div>
+      <p style="margin: 0; font-size: 13px; color: #3F4943; line-height: 1.5">Square-cornered and outlined so it never reads as an order state.</p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <h2 style="margin: 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: #5B655F">Freshness</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px">
+        <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: #0B5D45"><span style="width: 8px; height: 8px; border-radius: 50%; background: #0B5D45"></span>Live · 8 s ago</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: #6B4800"><span style="width: 8px; height: 8px; border-radius: 50%; border: 2px solid #6B4800; box-sizing: border-box"></span>Stale · 6 min ago</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: #5B655F"><span style="width: 8px; height: 2px; background: #5B655F"></span>Location unavailable</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 24px">
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <h2 style="margin: 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: #5B655F">Controls</h2>
+      <button style="height: 56px; border: 0; border-radius: 14px; background: #0B5D45; color: #fff; font: 700 16px 'Plus Jakarta Sans', system-ui, sans-serif">Primary · 56 px mobile</button>
+      <div style="display: flex; gap: 10px">
+        <button style="flex: 1; height: 48px; border: 1.5px solid #111714; border-radius: 12px; background: #fff; color: #111714; font: 700 15px 'Plus Jakarta Sans', system-ui, sans-serif">Secondary</button>
+        <button style="flex: 1; height: 48px; border: 0; border-radius: 12px; background: #FDE7E4; color: #A1281B; font: 700 15px 'Plus Jakarta Sans', system-ui, sans-serif">Destructive</button>
+      </div>
+      <button disabled style="height: 48px; border: 0; border-radius: 12px; background: #E1E4DF; color: #5B655F; font: 600 15px 'Plus Jakarta Sans', system-ui, sans-serif">Disabled — explains why below</button>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <label for="f-demo" style="font-size: 14px; font-weight: 600">Recipient phone</label>
+        <input id="f-demo" value="+27 82 555 0143" style="height: 48px; border: 1.5px solid #C9CEC8; border-radius: 12px; padding: 0 14px; font: 500 16px 'Plus Jakarta Sans', system-ui, sans-serif; color: #111714; background: #fff">
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <label for="f-err" style="font-size: 14px; font-weight: 600">Weight (kg)</label>
+        <input id="f-err" value="18" style="height: 48px; border: 2px solid #A1281B; border-radius: 12px; padding: 0 14px; font: 500 16px 'Plus Jakarta Sans', system-ui, sans-serif; color: #111714; background: #fff">
+        <span style="font-size: 13px; color: #A1281B; font-weight: 600">Too heavy for a motorcycle. The limit for this category is [LIMIT] kg.</span>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px; padding: 16px; background: #fff; border-radius: 14px; border: 1px solid #E1E4DF">
+      <span style="font-size: 14px; font-weight: 700">Principles</span>
+      <span style="font-size: 13px; color: #3F4943; line-height: 1.5">One primary action per screen, at thumb height. Server state always wins — show sync, stale and pending openly. Every network screen has loading, empty, offline and error states.</span>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1200,"height":760}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
