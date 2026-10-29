@@ -10,7 +10,7 @@ Hambisa runs its C# services and Angular portals on managed Kubernetes. Argo CD 
 | --- | --- |
 | Cloud accounts, networks and Kubernetes clusters | Application business logic and APIs |
 | Container build standards | Payment, map and identity provider selection |
-| CI pipelines for backend, Angular and React Native | App store listing content |
+| CI pipelines for backend and Angular; Expo EAS pipelines for the React Native apps | App store listing content |
 | GitOps delivery with Argo CD, promotion and rollouts | Corporate IT, laptops and office networks |
 | Secret management, supply chain and cluster security |  |
 | Observability, backup, disaster recovery and platform launch gates |  |
@@ -50,6 +50,20 @@ Git is the single source of truth for infrastructure, cluster configuration and 
 
 AWS is the confirmed cloud. af-south-1 is an opt-in region, so it must be enabled in every account before Terraform runs.
 
+### Mobile and client stack
+
+The customer and rider apps use React Native on Expo, with Clerk for sign-in, NativeWind for styling, Sanity for editable content and PostHog for product analytics and feature flags.
+
+| Layer | Choice | Platform impact |
+| --- | --- | --- |
+| Framework | React Native with TypeScript on Expo (development builds, config plugins) | EAS Build, Submit and Update replace self-managed mobile build machines (section 8) |
+| Authentication | Clerk (`@clerk/clerk-expo`) | Identity provider for customers and riders. Services verify Clerk session tokens against Clerk's JWKS; a Clerk webhook keeps the Identity/Profile service in sync |
+| Styling | NativeWind (Tailwind CSS for React Native) | One shared Tailwind config holds the colour, type and spacing tokens from the UI foundations board |
+| Content | Sanity | Help articles, FAQs, onboarding and promo copy, legal text versions. Never orders, prices or other operational state |
+| Analytics and flags | PostHog | Funnels for the spec's booking completion rate (section 1.4), feature flags for staged releases and kill switches, session replay off by default |
+
+Clerk, Sanity and PostHog are hosted outside South Africa, so each needs a POPIA cross-border review and an operator agreement before launch (section 16).
+
 ## 3. Environments and cloud accounts
 
 Four environments, each in its own AWS account under AWS Organizations, so a mistake in one cannot reach production data.
@@ -82,7 +96,7 @@ Every deployable is one container image built from a multi-stage Dockerfile, run
 | C# services (Orders, Pricing, Dispatch, Riders, Payments, Tracking, Notifications, Support, Reporting, Identity/Profile) | `mcr.microsoft.com/dotnet/sdk:10.0` | `mcr.microsoft.com/dotnet/aspnet:10.0` chiseled (distroless) | `dotnet publish -c Release`, no SDK in runtime image |
 | Angular back office and merchant portal | `node:22-alpine` running `ng build` | `nginxinc/nginx-unprivileged` | Static files only; runtime config injected at start, not baked in |
 | Database migration jobs | .NET SDK | aspnet chiseled | One per service, runs `ef migrations bundle` output |
-| React Native apps | Not containerised | — | Built on hosted macOS and Linux runners (section 8) |
+| React Native apps | Not containerised | — | Built and signed by Expo EAS Build (section 8) |
 
 **Must**
 
@@ -184,7 +198,7 @@ A monorepo per platform keeps the specification's modular-service approach cheap
 ### Branching
 
 - Trunk-based: short-lived feature branches into `main`, squash-merged after review and green checks.
-- `main` is always deployable; unfinished work is hidden behind feature flags, which also cover the spec's "rollback or disablement plan for each major feature".
+- `main` is always deployable; unfinished work is hidden behind PostHog feature flags, which also cover the spec's "rollback or disablement plan for each major feature".
 - Protected `main`: one approving review (two for `hambisa-money` paths and `hambisa-infra`), signed commits, no force-push, required status checks.
 - `CODEOWNERS` routes payment, dispatch and security-sensitive paths to named reviewers.
 
@@ -206,11 +220,11 @@ GitHub Actions builds, tests, scans, signs and publishes; its last step is a com
 | 4. Integration tests | Testcontainers: PostgreSQL, Redis, broker; outbox and idempotency cases | — | — |
 | 5. Contract tests | Consumer/provider API and event schema checks | Against API OpenAPI spec | Against API OpenAPI spec |
 | 6. Dependency scan | `dotnet list package --vulnerable`, SCA tool | `npm audit` or SCA tool | Same |
-| 7. Build artefact | Docker image, tag = SHA | Docker image (nginx), tag = SHA | Android AAB (Linux runner), iOS IPA (macOS runner), via Fastlane or EAS |
+| 7. Build artefact | Docker image, tag = SHA | Docker image (nginx), tag = SHA | EAS Build: Android AAB and iOS IPA, one build profile per environment |
 | 8. Image scan + SBOM | Trivy or Grype; fail on Critical/High with a fix | Same | — |
-| 9. Sign + push | Cosign signature and SBOM attestation, push to registry | Same | Sign with store keys held in the secret store |
-| 10. E2E | Playwright against the PR's preview environment | Playwright | Detox or Maestro on emulators |
-| 11. Hand-off | Bot opens or merges a commit bumping the image digest in `hambisa-gitops` dev values | Same | Upload to TestFlight and Play internal track |
+| 9. Sign + push | Cosign signature and SBOM attestation, push to registry | Same | EAS-managed signing credentials |
+| 10. E2E | Playwright against the PR's preview environment | Playwright | Maestro flows on EAS simulator and emulator builds |
+| 11. Hand-off | Bot opens or merges a commit bumping the image digest in `hambisa-gitops` dev values | Same | EAS Submit to TestFlight and the Play internal track |
 
 **Must**
 
@@ -223,7 +237,32 @@ GitHub Actions builds, tests, scans, signs and publishes; its last step is a com
 **Should**
 
 - Reusable workflow templates in a shared `.github` repository so every service gets the same gates.
-- Mobile over-the-air updates limited to JavaScript-only fixes, with the same review and staging rules as store builds.
+- EAS Update (over-the-air) limited to JavaScript and asset changes on a matching runtime version, with the same review and staging rules as store builds.
+
+### Mobile delivery with Expo
+
+EAS builds, signs and ships the apps; GitHub Actions starts the EAS jobs and runs the checks around them. Each environment maps to its own EAS profile, update channel and hosted-service project.
+
+| Environment | EAS build profile | EAS Update channel | Clerk | Sanity dataset | PostHog project | Distribution |
+| --- | --- | --- | --- | --- | --- | --- |
+| Dev | `development` | `development` | Development instance | `development` | Hambisa Dev | Development client, engineers only |
+| Staging | `preview` | `preview` | Separate staging application | `staging` | Hambisa Staging | TestFlight and Play internal track |
+| Production | `production` | `production` | Production instance | `production` | Hambisa | App Store and Google Play |
+
+**Must**
+
+- `runtimeVersion` follows the app version policy, so an over-the-air update never reaches a binary it cannot run.
+- EAS Update releases to production start at 10% of users and widen after crash and error checks; rollback republishes the previous update.
+- Only public identifiers ship in the app bundle: Clerk publishable key, PostHog project key, Sanity project ID and dataset name. Everything else stays in Secrets Manager or EAS secrets (section 10).
+- EAS authenticates with a robot access token kept as a protected GitHub environment secret for the mobile repository only, rotated every 90 days.
+- Config plugins for background location (`expo-location`, `expo-task-manager`), maps and push notifications are pinned and tested on the release device matrix before each Expo SDK upgrade.
+- Expo SDK upgrades one version at a time, staging first, within 3 months of a new SDK.
+
+**Should**
+
+- Sanity Studio and its schemas live in Git and deploy through CI; content editors publish to the `staging` dataset first, then promote to `production`.
+- PostHog session replay only on screens without personal data, with all inputs masked; never on payment, OTP, delivery code or document upload screens.
+- PostHog person profiles keyed by the internal user ID, never by phone number or email.
 
 ## 9. GitOps delivery with Argo CD
 
@@ -242,6 +281,8 @@ hambisa-gitops:  envs/dev  --promote-->  envs/staging  --promote (PR + approval)
               previews)               sandbox tests)                 auto-abort on SLO breach)
 
 AWS Secrets Manager --> External Secrets Operator --> Kubernetes Secrets in each cluster
+
+Mobile: GitHub Actions --> EAS Build --> EAS Submit (TestFlight / Play) and EAS Update channels
 ```
 
 Clusters pull images from the registry by digest. Rolling back production is a `git revert` on `prod values`, which Argo CD applies within its sync interval.
@@ -311,9 +352,21 @@ Secrets live only in AWS Secrets Manager, encrypted with KMS; External Secrets O
 | Mobile signing keys, store API keys | Secrets Manager, CI identity only | Mobile pipeline | Per store rules; upload key separate from app signing key |
 | Terraform state access | Cloud RBAC, no shared keys | CI identity | — |
 
+Mobile and hosted-service credentials:
+
+| Secret | Store | Consumed by | Rotation |
+| --- | --- | --- | --- |
+| Clerk secret key and webhook signing secret | Secrets Manager | Identity/Profile service, API gateway | 180 days |
+| Clerk publishable key | App config, public by design | Mobile apps | When the Clerk instance changes |
+| Sanity write and draft-preview tokens | Secrets Manager; Studio users sign in through Sanity | CI content scripts, preview tooling | 90 days |
+| PostHog project API key | App config, public by design | Mobile apps and web portals | — |
+| PostHog personal API key | Secrets Manager | Flag management and data export scripts | 90 days |
+| EAS robot access token | GitHub environment secret, mobile repository only | Mobile CI | 90 days |
+| APNs key and FCM service account | Secrets Manager, uploaded to EAS credentials | Notifications service, EAS | Yearly review |
+
 **Must**
 
-- No secret in Git, container images, Helm values, CI logs or GitHub repository secrets, other than the OIDC trust configuration.
+- No secret in Git, container images, Helm values, CI logs or GitHub repository secrets, other than the OIDC trust configuration and the EAS robot token (section 8).
 - External Secrets Operator with one `SecretStore` per namespace, each bound to a Pod Identity role that can read only that namespace's secrets.
 - Secrets kept in separate AWS accounts for non-production and production; production access requires MFA through IAM Identity Center and is logged in CloudTrail (spec section 9.1).
 - Services read secrets at start-up and on change notification; a rotated secret reaches pods without a rebuild (Reloader or native reload).
@@ -377,7 +430,7 @@ Every service emits OpenTelemetry traces, metrics and structured logs carrying t
 | Traces | OpenTelemetry Collector → AWS X-Ray or Grafana Tempo on S3 | 14 days |
 | Logs | OpenTelemetry Collector → CloudWatch Logs | 30 days hot; audit logs per retention matrix |
 | Uptime | CloudWatch Synthetics canaries, plus one external check outside AWS, every minute | 13 months |
-| Mobile | Crash reporting with release tags, no personal data | 90 days |
+| Mobile | Crash reporting tagged with EAS build and update IDs; PostHog for funnels, retention and flag exposure. No personal data in events | 90 days |
 
 ### Initial SLOs
 
@@ -461,3 +514,11 @@ The platform is built in four steps that line up with the specification's P0 "Pl
 | Log and audit retention periods | POPIA and cost | Set in the spec's retention matrix | Legal/privacy owner |
 | On-call model | Who answers pages outside office hours | Weekly rota, primary + backup | Engineering manager |
 | Peak volume forecast | Sizes node pools, autoscaling and load tests | Required from the business (spec section 15) | Product owner |
+
+Decisions raised by the mobile stack:
+
+| Decision | Why it matters | Suggested default | Owner |
+| --- | --- | --- | --- |
+| Data residency for Clerk, Sanity and PostHog | All three hold or receive personal data outside South Africa | POPIA cross-border assessment and operator agreements before launch; PostHog Cloud EU region | Legal/privacy owner |
+| Staff identity provider | Clerk covers customers and riders; back-office staff need MFA and role management | Clerk organisations for staff, or a separate workforce identity provider | Tech lead |
+| Push notification route | Expo's push service is simplest; direct APNs and FCM gives the Notifications service full control | Expo push service for the MVP | Mobile lead |

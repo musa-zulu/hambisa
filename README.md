@@ -6,16 +6,26 @@ Hambisa (isiZulu: "to send on its way") is the working name; confirm trademark a
 
 | Application | Platform | Status |
 |---|---|---|
-| Customer app | React Native (iOS, Android) | UI designed |
-| Rider app | React Native (iOS, Android) | UI designed |
+| Customer app | React Native on Expo (iOS, Android) | UI designed |
+| Rider app | React Native on Expo (iOS, Android) | UI designed |
 | Back office | Angular | UI designed |
 | Merchant portal | Angular (phase 2) | UI designed |
-| Backend services | C# / ASP.NET Core microservices | Not started |
+| Backend services | C# / ASP.NET Core microservices on AWS EKS | Not started |
+
+## Mobile stack
+
+| Layer | Choice |
+|---|---|
+| Framework | React Native with TypeScript on Expo (EAS Build, Submit, Update) |
+| Authentication | Clerk |
+| Styling | NativeWind |
+| Content | Sanity |
+| Analytics and feature flags | PostHog |
 
 ## Repository layout
 
 ```
-docs/     Product specification
+docs/     Product specification and DevOps/platform specification (AWS, EKS, Argo CD)
 design/   UI designs, one file per screen
 ```
 
